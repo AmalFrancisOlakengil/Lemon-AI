@@ -1,6 +1,8 @@
 import speech_recognition as sr
 from gtts import gTTS
 import os
+import webbrowser
+
 def listen():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
@@ -21,6 +23,18 @@ def open_application(a):
             os.startfile(r"C:\Users\franc\AppData\Local\Programs\Opera\opera.exe") 
      elif a == "open visual studio code":
             os.startfile(r"C:\Users\franc\AppData\Local\Programs\Microsoft VS Code\Code.exe") 
-
+     elif a == "open edge":
+            os.startfile(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe") 
+     elif a == "open youtube":
+              webbrowser.open("https://www.youtube.com/")
+     elif a == "open github":
+              webbrowser.open("https://github.com/")
+     elif a == "open chat gpt":
+              webbrowser.open("https://chatgpt.com/")
+     choice = input("Repeat?(y/n)")
+     if(choice == "y"):
+         app_name = listen()  
+         open_application(str(app_name))
 app_name = listen()
 open_application(str(app_name))
+

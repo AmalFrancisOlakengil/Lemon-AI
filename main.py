@@ -1,10 +1,16 @@
+#imports
+from re import T
+from tkinter.font import BOLD
 import speech_recognition as sr
 from gtts import gTTS
 import os
 import webbrowser
 from tkinter import *
 import sqlite3
+from tkinter import ttk
 
+
+# audio recognition
 def listen():
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
@@ -21,6 +27,7 @@ def listen():
             print(f"Could not request results; {e}")
             return ""
 
+# app access
 def open_application(app_name):
     if app_name == "open opera":
         os.startfile(r"C:\Users\franc\AppData\Local\Programs\Opera\opera.exe") 
@@ -36,17 +43,43 @@ def open_application(app_name):
         webbrowser.open("https://chatgpt.com/")
     else:
         print("Application not recognized")
-    
+  
+# entry function
 def start_listening():
     app_name = listen()
     open_application(app_name)
 
+# window set up
 window = Tk()
-window.geometry("600x400")
+window.geometry("450x400")
+window.minsize(width="450",height="400")
+window.maxsize(width="450",height="400")
 window.title("Voice Command App")
 
-listen_button = Button(window, text="Start Listening", command=start_listening)
-listen_button.pack(pady=20)
+#tab creation
+notebook = ttk.Notebook(window)
+tab1 = Frame(notebook)
+tab2 = Frame(notebook)
+tab3 = Frame(notebook)
+notebook.add(tab1, text="Assistant")
+notebook.add(tab2, text="Add New")
+notebook.add(tab3, text="Speech To Text")
+notebook.pack(expand=True, fill = "both")
+tab1.configure(background="white")
+tab2.configure(background="white")
+tab3.configure(background="white")
+
+#tab 1
+listen_button = Button(tab1, text="START LISTENING", command=start_listening,bg = "black", fg = "white", font = ('Arial', 10, BOLD))
+listen_button.pack(expand=True)
+
+#tab2
+TAN = Label(tab2, text="ENTER APPLICATION NAME", font = ('Helvetica', 10, BOLD), bg = "white").pack(expand=True)
+add_new = Entry(tab2).pack(expand=True)
+TANA =  Label(tab2, text="ENTER APPLICATION ADDRESS", font = ('Helvetica', 10, BOLD),bg = "white").pack(expand=True)
+new_address = Entry(tab2).pack(expand=True)
+
+#tab3
 
 window.mainloop()
 

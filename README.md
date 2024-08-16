@@ -15,4 +15,8 @@
     <li>Your .EXE is ready to run in build directory of python</li>
   </ol><br>
   <hr>
+
+https://github.com/user-attachments/assets/69d5bfd9-4c79-41b2-b559-0ca7183e387f
+
+
 </div>
